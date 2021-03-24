@@ -2,12 +2,14 @@ package edu.kis.powp.jobs2d;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.factories.ShapeFactory;
 import edu.kis.powp.jobs2d.drivers.adapter.JaneDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawingAdapter;
@@ -39,6 +41,33 @@ public class TestJobs2dPatterns {
 		SelectJaneFigureOptionListener selectJaneFigureOptionListener = new SelectJaneFigureOptionListener(
 				DriverFeature.getDriverManager());
 		application.addTest("Figure Jane", selectJaneFigureOptionListener);
+
+		ActionListener myRectangle = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ShapeFactory.createRectangle(10,10, 50, 100).execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		application.addTest("My Rectangle", myRectangle);
+
+		ActionListener mySquare = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ShapeFactory.createSquare(10,10, 100).execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		application.addTest("My Square", mySquare);
+
+		ActionListener myTriangle = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ShapeFactory.createTriangle(10,10, 50, 100).execute(DriverFeature.getDriverManager().getCurrentDriver());
+			}
+		};
+
+		application.addTest("My Triangle", myTriangle);
 	}
 
 	/**
